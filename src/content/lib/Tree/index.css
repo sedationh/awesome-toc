@@ -1,0 +1,52 @@
+.tree_3f243b .tree-node_3f243b {
+  padding-left: 1em;
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b {
+  line-height: 24px;
+  display: flex;
+  align-items: stretch;
+  padding-bottom: 2px;
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .switcher_3f243b {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .switcher_3f243b .switcher-icon_3f243b {
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transform: rotate(-90deg);
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .switcher_3f243b .switcher-icon_3f243b.expanded_3f243b {
+  transform: rotate(0deg);
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .switcher-placeholder_3f243b {
+  width: 24px;
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .title-wrapper_3f243b {
+  padding: 0 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .title-wrapper_3f243b:hover {
+  background-color: #f5f5f5;
+}
+.tree_3f243b .tree-node_3f243b .content_3f243b .title-wrapper_3f243b.selected_3f243b {
+  background-color: #bae7ff;
+}
+.tree_3f243b .tree-node_3f243b .children-wrapper_3f243b {
+  transition: max-height, 0.3s;
+  max-height: 0;
+  overflow: auto;
+}
+.tree_3f243b .tree-node_3f243b .children-wrapper_3f243b.expanded_3f243b {
+  display: block;
+  max-height: 1000px;
+}
+
+/*# sourceMappingURL=index.css.map */

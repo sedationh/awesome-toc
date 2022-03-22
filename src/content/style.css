@@ -1,0 +1,13 @@
+#awesome-toc-root {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  max-width: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 999;
+}

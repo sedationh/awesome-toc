@@ -1,9 +1,8 @@
-import React from 'react'
-import { render } from 'react-dom'
-import App from './App'
+import * as React from 'react'
+import ReactDOM from 'react-dom'
 
-console.log('popup script')
+function App() {
+  return <div>Popup</div>
+}
 
-const root = document.querySelector('#root')
-
-render(<App />, root)
+ReactDOM.render(<App />, document.querySelector('#root'))

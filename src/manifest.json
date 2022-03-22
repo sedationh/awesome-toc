@@ -1,18 +1,12 @@
 {
   "background": {
-    "scripts": [
-      "background/index.ts"
-    ]
+    "scripts": ["background/index.ts"]
   },
   "content_scripts": [
     {
-      "js": [
-        "content/index.ts"
-      ],
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ]
+      "js": ["content/index.ts"],
+      "css": ["content/lib/Tree/index.css", "content/style.css"],
+      "matches": ["https://*/*", "http://*/*"]
     }
   ],
   "browser_action": {
