@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "strict": true,
+    "strict": false,
     "target": "es2018"
   }
 }

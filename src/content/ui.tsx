@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { log } from './debug.js'
-import Tree, { NodeData, TreeData } from './lib/Tree/module.js'
-import { iterateNestedTokenDOMs, NestedTokenDOM } from './preprocess'
+import Tree, { TreeData } from '@sedationh/react-tree'
+import { iterateNestedTokenDOMs } from './preprocess'
+
+// import '@sedationh/react-tree/assets/style.css'
 
 export function getKeyArray(key) {
   const arr = key.split('-')
@@ -27,7 +29,7 @@ function TOCDisplayComponent({
     {
       node,
     }: {
-      node: NodeData & NestedTokenDOM
+      node
     },
   ) => {
     node.dom.scrollIntoView({
@@ -89,8 +91,6 @@ export default TOCDisplayComponent
 
 let $root: HTMLElement
 const ROOT_ID = 'awesome-toc-root'
-// const CSS_ID = "awesome-toc-css"
-
 function initTOCDisplayComponent(treeData, DOM2keyMap) {
   $root = document.createElement('div')
   $root.id = ROOT_ID

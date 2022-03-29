@@ -1,13 +1,17 @@
-import { deepClone } from "./utils"
+import { deepClone } from './utils'
 
 const extractArticle = (): HTMLElement | null => {
   // TODO: 利用权重分析文章的 article element
-  return document.querySelector("article") || document.querySelector(".content")
+  return (
+    document.querySelector('article') ||
+    document.querySelector('main') ||
+    document.querySelector('.content')
+  )
 }
 
 const extractTokenDOMs = (articleDOM: HTMLElement | null): HTMLElement[] => {
   if (!articleDOM) return []
-  return Array.from(articleDOM.querySelectorAll("h1,h2,h3"))
+  return Array.from(articleDOM.querySelectorAll('h1,h2,h3'))
 }
 
 export class NestedTokenDOM {
@@ -15,33 +19,33 @@ export class NestedTokenDOM {
   children: NestedTokenDOM[]
   // 依赖于层级关系生成
   key: string
+  title: string
 
   constructor(tokenDOM: HTMLElement) {
     this.dom = tokenDOM
     this.children = []
-    this.key = ""
+    this.key = ''
   }
 }
 
 const buildNestedTokenDOMs = (tokenDOMs: HTMLElement[]): NestedTokenDOM[] => {
-  let nestedTokenDOMs: NestedTokenDOM[] = []
+  const nestedTokenDOMs = []
   try {
     for (const tokenDOM of tokenDOMs) {
       const currentNestedTokenDOM = new NestedTokenDOM(tokenDOM)
       nestTokenDOMs(nestedTokenDOMs, currentNestedTokenDOM)
     }
   } catch (error) {
-    console.log("buildNestedTokenDOMs 失败", error)
+    console.log('buildNestedTokenDOMs 失败', error)
   }
 
   return nestedTokenDOMs
 }
 
-function iterateNestedTokenDOMs<T>(
-  nestedTokenDOMs: NestedTokenDOM[],
-  callback: (nestedTokenDOM: NestedTokenDOM & T) => void
-) {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+function iterateNestedTokenDOMs(nestedTokenDOMs, callback) {
   const clonedNestedTokenDOMs = deepClone(nestedTokenDOMs)
+
   dfs(clonedNestedTokenDOMs)
 
   function dfs(nestedTokenDOMs) {
@@ -69,7 +73,7 @@ function getLastItemIndex(array) {
 }
 
 function getHeadingLevel(nestedTokenDOM: NestedTokenDOM) {
-  return +nestedTokenDOM.dom.tagName.split("H").join("")
+  return +nestedTokenDOM.dom.tagName.split('H').join('')
 }
 
 /*
@@ -112,7 +116,7 @@ function getHeadingLevel(nestedTokenDOM: NestedTokenDOM) {
 */
 function nestTokenDOMs(
   nestedTokenDOMs: NestedTokenDOM[],
-  currentNestedTokenDOM: NestedTokenDOM
+  currentNestedTokenDOM: NestedTokenDOM,
 ) {
   let children = nestedTokenDOMs
   let lastItem = getLastItem(children)
@@ -135,7 +139,7 @@ function nestTokenDOMs(
   children.push(currentNestedTokenDOM)
   lastItemIndex = getLastItemIndex(children)
   keyArray.push(lastItemIndex)
-  currentNestedTokenDOM.key = keyArray.join("-")
+  currentNestedTokenDOM.key = keyArray.join('-')
 }
 /*
   tip:

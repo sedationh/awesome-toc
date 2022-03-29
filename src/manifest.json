@@ -1,16 +1,20 @@
 {
   "background": {
-    "scripts": ["background/index.ts"]
+    "service_worker": "background.ts"
   },
   "content_scripts": [
     {
       "js": ["content/index.ts"],
-      "css": ["content/lib/Tree/index.css", "content/style.css"],
+      "css": ["content/Tree.css", "content/style.css"],
       "matches": ["https://*/*", "http://*/*"]
     }
   ],
-  "browser_action": {
-    "default_popup": "pages/popup/index.html"
+  "action": {
+    "default_title": "Click to show XX"
   },
+  "permissions": ["activeTab", "storage"],
+  "version": "0.0.0",
+  "manifest_version": 3,
+  "options_page": "pages/options/index.html",
   "name": "awesome-toc"
 }

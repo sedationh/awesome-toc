@@ -1,4 +1,3 @@
-import { NodeData, TreeData } from '@sedationh/react-tree'
 import {
   buildNestedTokenDOMs,
   iterateNestedTokenDOMs,
@@ -6,12 +5,15 @@ import {
 } from './preprocess'
 import { initTOCDisplayComponent } from './ui'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Options {}
+
 // TODO: 曝光时长统计 -> 颜色
 class TOC {
-  options: any
+  options: Options
   tokenDOMs: HTMLElement[]
 
-  constructor(tokenDOMs: HTMLElement[], options: any) {
+  constructor(tokenDOMs: HTMLElement[], options: Options) {
     this.tokenDOMs = tokenDOMs
     this.options = options
 
@@ -21,15 +23,10 @@ class TOC {
     initTOCDisplayComponent(treeData, DOM2keyMap)
   }
 
-  adaptTreeDataFromNestedTokenDOMs(
-    nestedTokenDOMs: NestedTokenDOM[],
-  ): TreeData {
-    return iterateNestedTokenDOMs<NodeData>(
-      nestedTokenDOMs,
-      (nestedTokenDOM) => {
-        nestedTokenDOM.title = nestedTokenDOM.dom.textContent
-      },
-    )
+  adaptTreeDataFromNestedTokenDOMs(nestedTokenDOMs) {
+    return iterateNestedTokenDOMs(nestedTokenDOMs, (nestedTokenDOM) => {
+      nestedTokenDOM.title = nestedTokenDOM.dom.textContent
+    })
   }
 
   getDOM2keyMap(nestedTokenDOMs: NestedTokenDOM[]) {
@@ -40,9 +37,15 @@ class TOC {
     return map
   }
 
-  remove() {}
-  show() {}
-  hide() {}
+  remove() {
+    // TODO: remove
+  }
+  show() {
+    // TODO: show
+  }
+  hide() {
+    // TODO: hide
+  }
 }
 
 const createTOC = (tokenDOMs: HTMLElement[], options: any) => {
