@@ -11,7 +11,7 @@ const extractArticle = (): HTMLElement | null => {
 
 const extractTokenDOMs = (articleDOM: HTMLElement | null): HTMLElement[] => {
   if (!articleDOM) return []
-  return Array.from(articleDOM.querySelectorAll('h1,h2,h3'))
+  return Array.from(articleDOM.querySelectorAll('h1,h2,h3,h4,h5'))
 }
 
 export class NestedTokenDOM {

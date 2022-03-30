@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { log } from './debug.js'
 import Tree, { TreeData } from '@sedationh/react-tree'
 import { iterateNestedTokenDOMs } from './preprocess'
+import logger from '../utils/log.js'
 
 // import '@sedationh/react-tree/assets/style.css'
 
@@ -18,20 +18,13 @@ export function getKeyArray(key) {
 }
 
 function TOCDisplayComponent({
-  treeData,
+  treeData = [],
   DOM2keyMap,
 }: {
   treeData: TreeData
   DOM2keyMap: Map<Element, string>
 }) {
-  const handleSelect = (
-    keys,
-    {
-      node,
-    }: {
-      node
-    },
-  ) => {
+  const handleSelect = (keys, { node }) => {
     node.dom.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
@@ -49,7 +42,7 @@ function TOCDisplayComponent({
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return
           const key = DOM2keyMap.get(entry.target)
-          log('useEffect IntersectionObserver callback', {
+          logger.info('useEffect IntersectionObserver callback', {
             entry,
             key,
           })
@@ -76,13 +69,17 @@ function TOCDisplayComponent({
 
   return (
     <div>
-      <Tree
-        expandedKeys={expandedKeys}
-        selectedKeys={selectedKeys}
-        data={treeData}
-        onSelect={handleSelect}
-        onExpand={handleExpand}
-      />
+      {!!treeData.length && (
+        <div className="tree-wrapper">
+          <Tree
+            expandedKeys={expandedKeys}
+            selectedKeys={selectedKeys}
+            data={treeData}
+            onSelect={handleSelect}
+            onExpand={handleExpand}
+          />
+        </div>
+      )}
     </div>
   )
 }
@@ -102,4 +99,4 @@ function initTOCDisplayComponent(treeData, DOM2keyMap) {
   )
 }
 
-export { initTOCDisplayComponent }
+export { initTOCDisplayComponent, $root }

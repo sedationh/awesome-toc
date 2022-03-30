@@ -3,7 +3,7 @@ import {
   iterateNestedTokenDOMs,
   NestedTokenDOM,
 } from './preprocess'
-import { initTOCDisplayComponent } from './ui'
+import { $root, initTOCDisplayComponent } from './ui'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Options {}
@@ -12,6 +12,7 @@ interface Options {}
 class TOC {
   options: Options
   tokenDOMs: HTMLElement[]
+  visible = true
 
   constructor(tokenDOMs: HTMLElement[], options: Options) {
     this.tokenDOMs = tokenDOMs
@@ -37,18 +38,29 @@ class TOC {
     return map
   }
 
-  remove() {
-    // TODO: remove
+  toggle() {
+    if (this.visible) {
+      this.hide()
+    } else {
+      this.show()
+    }
   }
+
   show() {
     // TODO: show
+    this.visible = true
+    chrome.runtime.sendMessage("show")
+    $root.style.display = 'block'
   }
   hide() {
     // TODO: hide
+    this.visible = false
+    chrome.runtime.sendMessage("hide")
+    $root.style.display = 'none'
   }
 }
 
-const createTOC = (tokenDOMs: HTMLElement[], options: any) => {
+const createTOC = (tokenDOMs: HTMLElement[], options: Options) => {
   return new TOC(tokenDOMs, options)
 }
 
