@@ -27,8 +27,8 @@ chrome.runtime.onMessage.addListener((command) => {
   logger.info('content script received command', command)
   if (!toc) {
     load()
-    return
+  } else {
+    toc.toggle()
   }
-  toc.toggle()
   return true
 })

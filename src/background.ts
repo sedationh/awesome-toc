@@ -32,8 +32,8 @@ chrome.action.setIcon({
   path: 'assets/icon-gray-16.png',
 })
 
-getCurrentTab((tab) => {
-  chrome.runtime.onMessage.addListener(function (request) {
+chrome.runtime.onMessage.addListener(function (request) {
+  getCurrentTab((tab) => {
     if (request == 'show') {
       // @ts-ignore
       chrome.action.setIcon({
@@ -47,6 +47,6 @@ getCurrentTab((tab) => {
         path: 'assets/icon-gray-16.png',
       })
     }
-    return true
   })
+  return true
 })

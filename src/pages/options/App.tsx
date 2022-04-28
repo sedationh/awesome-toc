@@ -38,7 +38,7 @@ const App = () => {
               checked={loadPattern === '1'}
               onChange={(e) => handleLoadPatternChoice(e.target.value)}
             />
-            Load on All Page / 在所有页面启用
+            Enable on All Page / 在所有页面启用
           </label>
         </div>
       </div>

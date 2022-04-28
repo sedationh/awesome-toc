@@ -12,8 +12,7 @@
   "action": {
     "default_title": "Click to show XX"
   },
-  "permissions": ["tabs", "storage", "scripting"],
-  "version": "0.0.0",
+  "permissions": ["storage"],
   "manifest_version": 3,
   "options_page": "pages/options/index.html",
   "icons": {
