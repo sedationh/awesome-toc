@@ -5,7 +5,8 @@ const extractArticle = (): HTMLElement | null => {
   return (
     document.querySelector('article') ||
     document.querySelector('main') ||
-    document.querySelector('.content')
+    document.querySelector('.content') ||
+    document.querySelector('body')
   )
 }
 
