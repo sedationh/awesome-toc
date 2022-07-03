@@ -1,13 +1,13 @@
 {
   "name": "awesome-toc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "description": "a chrome extension for toc",
   "author": "SedationH",
   "scripts": {
+    "dev": "rollup -c -w",
     "build": "rollup -c",
     "release": "cross-env NODE_ENV=production rollup -c",
-    "start": "rollup -c -w",
     "test": "jest"
   },
   "dependencies": {

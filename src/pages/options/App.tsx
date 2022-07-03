@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import logger from '../../utils/log'
 
 const App = () => {
-  const [loadPattern, setLoadPattern] = useState('9')
+  const [loadPattern, setLoadPattern] = useState('0')
 
   const handleLoadPatternChoice = async (newLoadPattern) => {
-    await chrome.storage.local.set({ loadPattern: newLoadPattern })
-    setLoadPattern(newLoadPattern)
+    try {
+      await chrome.storage.local.set({ loadPattern: newLoadPattern })
+      setLoadPattern(newLoadPattern)
+    } catch (error) {
+      logger.info('handleLoadPatternChoice error', error)
+    }
   }
 
   useEffect(() => {
     chrome.storage.local.get(['loadPattern'], ({ loadPattern }) => {
-      console.log(loadPattern)
       setLoadPattern(loadPattern)
     })
   }, [])

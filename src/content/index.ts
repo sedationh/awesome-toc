@@ -1,6 +1,6 @@
 import logger from '../utils/log'
 import { extractArticle, extractTokenDOMs } from './preprocess'
-import { createTOC, TOC } from './toc'
+import { TOC } from './toc'
 
 let toc: TOC
 ;(async function () {
@@ -19,8 +19,22 @@ function load() {
   if (!tokenDOMs?.length) {
     logger.info('there is no article / headings')
   }
-  toc = createTOC(tokenDOMs, {})
-  toc.show()
+  toc = TOC.createTOC(tokenDOMs, {})
+}
+
+let lastUrl = location.href
+new MutationObserver(() => {
+  const url = location.href
+  if (url !== lastUrl) {
+    lastUrl = url
+    onUrlChange()
+  }
+}).observe(document, { subtree: true, childList: true })
+
+function onUrlChange() {
+  setTimeout(() => {
+    load()
+  }, 200)
 }
 
 chrome.runtime.onMessage.addListener((command) => {

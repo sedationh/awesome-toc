@@ -4,8 +4,6 @@ import Tree, { TreeData } from '@sedationh/react-tree'
 import { iterateNestedTokenDOMs } from './preprocess'
 import logger from '../utils/log.js'
 
-// import '@sedationh/react-tree/assets/style.css'
-
 export function getKeyArray(key) {
   const arr = key.split('-')
   const len = arr.length
@@ -99,4 +97,13 @@ function initTOCDisplayComponent(treeData, DOM2keyMap) {
   )
 }
 
-export { initTOCDisplayComponent, $root }
+function removeTOCDisplayComponent() {
+  document.getElementById(ROOT_ID).remove()
+}
+
+function reloadTOCDisplayComponent(treeData, DOM2keyMap) {
+  removeTOCDisplayComponent()
+  initTOCDisplayComponent(treeData, DOM2keyMap)
+}
+
+export { initTOCDisplayComponent, reloadTOCDisplayComponent, $root }
