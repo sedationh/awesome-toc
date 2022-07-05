@@ -3,10 +3,13 @@ import { extractArticle, extractTokenDOMs } from './preprocess'
 import { TOC } from './toc'
 
 let toc: TOC
+let cachedLoadPattern = '0'
+
 ;(async function () {
   // @ts-ignore
   const { loadPattern } = await chrome.storage.local.get(['loadPattern'])
   logger.info('content script load 前 获得到的用户配置', { loadPattern })
+  cachedLoadPattern = loadPattern
   if (loadPattern === '0') return
   load()
 })()
@@ -23,16 +26,20 @@ function load() {
 }
 
 let lastUrl = location.href
-new MutationObserver(() => {
+setInterval(() => {
   const url = location.href
-  if (url !== lastUrl) {
-    lastUrl = url
-    onUrlChange()
+  if (url === lastUrl) {
+    return
   }
-}).observe(document, { subtree: true, childList: true })
+  lastUrl = url
+  onUrlChange()
+}, 200)
 
 function onUrlChange() {
   setTimeout(() => {
+    if (cachedLoadPattern === '0') {
+      return
+    }
     load()
   }, 200)
 }
