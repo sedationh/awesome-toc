@@ -27,7 +27,6 @@
   width: 24px;
 }
 .sedationh-tree-node-content-title {
-  max-width: calc(100% - 14px - 24px);
   padding: 0 4px;
   overflow-x: hidden;
   white-space: nowrap;
