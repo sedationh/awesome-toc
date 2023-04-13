@@ -1,10 +1,18 @@
-import { useLocalStorageState } from 'ahooks';
+import { useLocalStorageState, useTitle } from 'ahooks';
 import { Converter } from 'showdown'
+import { loadTOC } from '../../src/content/load'
+import '../../src/content/style.css'
+import '../../src/content/Tree.css'
 import './App.css'
+import { useEffect } from 'react';
 
 const converter = new Converter()
 
+
 function App() {
+
+  useTitle("Awesome Toc")
+
   const [content, setContent] = useLocalStorageState<string>(
     'content',
     {
@@ -22,6 +30,10 @@ function App() {
     __html: converter.makeHtml(content)
   }
 
+  useEffect(() => {
+    loadTOC()
+  }, [content])
+
   return <div className='app'>
     <textarea className="input"
       onChange={({ target: {
@@ -30,9 +42,9 @@ function App() {
       }
       value={content}
     />
-    <section className="out">
+    <article className="out">
       <div dangerouslySetInnerHTML={contentInnerHtml}></div>
-    </section>
+    </article>
   </div >
 }
 
