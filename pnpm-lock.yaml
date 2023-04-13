@@ -10,6 +10,7 @@ specifiers:
   '@types/chrome': ^0.0.127
   '@types/firefox-webext-browser': ^82.0.0
   '@types/jest': ^26.0.19
+  '@types/node': ^16
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@typescript-eslint/eslint-plugin': ^4.10.0
@@ -53,6 +54,7 @@ devDependencies:
   '@rollup/plugin-node-resolve': 11.0.1_rollup@2.60.2
   '@rollup/plugin-typescript': 8.1.0_mfq4px33xwgvemqwlwztvbpzxe
   '@types/jest': 26.0.19
+  '@types/node': 16.18.23
   '@typescript-eslint/eslint-plugin': 4.10.0_nnq2bsjorrgpx3pjcou2sjda4i
   '@typescript-eslint/parser': 4.10.0_uor3z4om6p57ncttrpxpmpkwwy
   cross-env: 7.0.3
@@ -409,7 +411,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       chalk: 4.1.0
       jest-message-util: 26.6.2
       jest-util: 26.6.2
@@ -425,7 +427,7 @@ packages:
       '@jest/test-result': 26.6.2
       '@jest/transform': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       ansi-escapes: 4.3.1
       chalk: 4.1.0
       exit: 0.1.2
@@ -462,7 +464,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       jest-mock: 26.6.2
     dev: true
 
@@ -472,7 +474,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@sinonjs/fake-timers': 6.0.1
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       jest-message-util: 26.6.2
       jest-mock: 26.6.2
       jest-util: 26.6.2
@@ -586,7 +588,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.0
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       '@types/yargs': 15.0.12
       chalk: 4.1.0
     dev: true
@@ -1534,7 +1536,7 @@ packages:
   /@types/graceful-fs/4.1.4:
     resolution: {integrity: sha512-mWA/4zFQhfvOA8zWkXobwJvBD7vzcxgrOQ0J5CH1votGqdq9m7+FwtGaqyCZqC3NyyBkc9z4m+iry4LlqcMWJg==}
     dependencies:
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
     dev: true
 
   /@types/har-format/1.2.5:
@@ -1571,8 +1573,8 @@ packages:
     resolution: {integrity: sha512-0fDwydE2clKe9MNfvXHBHF9WEahRuj+msTuQqOmAApNORFvhMYZKNGGJdCzuhheVjMps/ti0Ak/iJPACMaevvw==}
     dev: true
 
-  /@types/node/14.14.14:
-    resolution: {integrity: sha512-UHnOPWVWV1z+VV8k6L1HhG7UbGBgIdghqF3l9Ny9ApPghbjICXkUJSd/b9gOgQfjM1r+37cipdw/HJ3F6ICEnQ==}
+  /@types/node/16.18.23:
+    resolution: {integrity: sha512-XAMpaw1s1+6zM+jn2tmw8MyaRDIJfXxqmIQIS0HfoGYPuf7dUWeiUKopwq13KFX9lEp1+THGtlaaYx39Nxr58g==}
     dev: true
 
   /@types/normalize-package-data/2.4.0:
@@ -1607,7 +1609,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
     dev: true
 
   /@types/stack-utils/2.0.0:
@@ -3950,7 +3952,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       jest-mock: 26.6.2
       jest-util: 26.6.2
       jsdom: 16.4.0
@@ -3967,7 +3969,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       jest-mock: 26.6.2
       jest-util: 26.6.2
     dev: true
@@ -3983,7 +3985,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@types/graceful-fs': 4.1.4
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       anymatch: 3.1.1
       fb-watchman: 2.0.1
       graceful-fs: 4.2.4
@@ -4009,7 +4011,7 @@ packages:
       '@jest/source-map': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       chalk: 4.1.0
       co: 4.6.0
       expect: 26.6.2
@@ -4068,7 +4070,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
     dev: true
 
   /jest-pnp-resolver/1.2.2_jest-resolve@26.6.2:
@@ -4121,7 +4123,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       chalk: 4.1.0
       emittery: 0.7.2
       exit: 0.1.2
@@ -4189,7 +4191,7 @@ packages:
     resolution: {integrity: sha512-S5wqyz0DXnNJPd/xfIzZ5Xnp1HrJWBczg8mMfMpN78OJ5eDxXyf+Ygld9wX1DnUWbIbhM1YDY95NjR4CBXkb2g==}
     engines: {node: '>= 10.14.2'}
     dependencies:
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       graceful-fs: 4.2.4
     dev: true
 
@@ -4222,7 +4224,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       chalk: 4.1.0
       graceful-fs: 4.2.4
       is-ci: 2.0.0
@@ -4247,7 +4249,7 @@ packages:
     dependencies:
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       ansi-escapes: 4.3.1
       chalk: 4.1.0
       jest-util: 26.6.2
@@ -4258,7 +4260,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -5078,7 +5080,7 @@ packages:
   /parse5/3.0.3:
     resolution: {integrity: sha512-rgO9Zg5LLLkfJF9E6CCmXlSE4UVceloys8JrFqCcHloC3usd/kJCyPDwH2SOlzix2j3xaP9sUX3e8+kvkuleAA==}
     dependencies:
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
     dev: true
 
   /parse5/5.1.1:
@@ -5568,7 +5570,7 @@ packages:
     hasBin: true
     dependencies:
       '@types/estree': 0.0.45
-      '@types/node': 14.14.14
+      '@types/node': 16.18.23
       acorn: 7.4.1
     dev: true
 
