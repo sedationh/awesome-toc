@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  width: 80vh;
+  border: 1px solid skyblue;
+}
+
+.input {
+  flex: 1;
+  height: 100vh;
+  padding: 5px;
+}
+
+.out {
+  flex: 2;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 50vh;
+}

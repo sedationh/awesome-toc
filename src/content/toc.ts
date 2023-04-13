@@ -16,7 +16,7 @@ class TOC {
 
   static singleInstance: TOC | undefined
 
-  static createTOC = (tokenDOMs: HTMLElement[], options: Options) => {
+  static createTOC = (tokenDOMs: HTMLElement[], options: Options = {}) => {
     const instance = new TOC(tokenDOMs, options)
     TOC.singleInstance = instance
     return instance
