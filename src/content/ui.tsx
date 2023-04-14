@@ -65,18 +65,26 @@ function TOCDisplayComponent({
   const [selectedKeys, setSelectedKeys] = useState([])
   const [expandedKeys, setExpandedKeys] = useState([])
 
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const backgroundColor = isCollapsed ? "#FF4F37" : "#73e860"
+
+
   return (
-    <div>
-      {!!treeData.length && (
-        <div className="tree-wrapper">
-          <Tree
-            expandedKeys={expandedKeys}
-            selectedKeys={selectedKeys}
-            data={treeData}
-            onSelect={handleSelect}
-            onExpand={handleExpand}
-          />
-        </div>
+    <div className="tree-wrapper">
+      <div className="btn"
+        style={{
+          backgroundColor
+        }} onClick={() => {
+          setIsCollapsed(v => !v)
+        }} />
+      {!!treeData.length && !isCollapsed && (
+        <Tree
+          expandedKeys={expandedKeys}
+          selectedKeys={selectedKeys}
+          data={treeData}
+          onSelect={handleSelect}
+          onExpand={handleExpand}
+        />
       )}
     </div>
   )

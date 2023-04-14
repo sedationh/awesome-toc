@@ -2,12 +2,11 @@
   position: fixed;
   right: 20px;
   top: 20px;
-  max-width: 300px;
-  max-height: 60vh;
   overflow-y: auto;
   background-color: white;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   z-index: 99999999999999;
   color: black;
 
@@ -16,5 +15,22 @@
 }
 
 #awesome-toc-root .tree-wrapper {
-  padding: 20px;
+  max-width: 300px;
+  max-height: 60vh;
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.tree-wrapper .btn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tree-wrapper .sedationh-tree {
+  padding: 25px 25px 14px 0px;
 }
