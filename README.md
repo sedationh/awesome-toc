@@ -7,4 +7,4 @@
 - https://arkwright.github.io/scaling-react-server-side-rendering.html
 
 # 开发环境要求
-pnpm@7
+pnpm@6
