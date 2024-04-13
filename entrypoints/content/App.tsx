@@ -2,6 +2,7 @@ import "antd/dist/antd.css";
 import React, { Key, useEffect, useState } from "react";
 import { Tree, TreeDataNode, TreeProps } from "antd";
 import { debounce } from "lodash-es";
+import Draggable from "react-draggable";
 import {
   buildDom2KeyMap,
   buildKey2DOM,
@@ -19,6 +20,7 @@ const App = () => {
   const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const dragRef = React.useRef<boolean>(false);
 
   const debouncedSetSelectedKeys = debounce(setSelectedKeys, 100);
   const debouncedSetExpandedKeys = debounce(setExpandedKeys, 100);
@@ -71,32 +73,46 @@ const App = () => {
     setSelectedKeys(keys);
   };
 
-  const onExpand: TreeProps["onExpand"] = (keys, { node }) => {
+  const onExpand: TreeProps["onExpand"] = (keys) => {
     setExpandedKeys(keys);
   };
 
   return (
-    <div className="tree-wrapper">
-      <div
-        className="btn"
-        style={{
-          backgroundColor,
-        }}
-        onClick={() => {
-          setIsCollapsed((v) => !v);
-        }}
-      />
-      {!!treeData.length && !isCollapsed && (
-        <Tree
-          multiple
-          expandedKeys={expandedKeys}
-          selectedKeys={selectedKeys}
-          onSelect={onSelect}
-          onExpand={onExpand}
-          treeData={treeData}
-        />
-      )}
-    </div>
+    <Draggable
+      onStart={() => {
+        dragRef.current = false;
+      }}
+      onDrag={() => {
+        dragRef.current = true;
+      }}
+      handle="#btn"
+    >
+      <div className="awesome-toc-root">
+        <div className="tree-wrapper">
+          <div
+            className="btn"
+            id="btn"
+            style={{
+              backgroundColor,
+            }}
+            onClick={() => {
+              if (dragRef.current) return;
+              setIsCollapsed((v) => !v);
+            }}
+          />
+          {!!treeData.length && !isCollapsed && (
+            <Tree
+              multiple
+              expandedKeys={expandedKeys}
+              selectedKeys={selectedKeys}
+              onSelect={onSelect}
+              onExpand={onExpand}
+              treeData={treeData}
+            />
+          )}
+        </div>
+      </div>
+    </Draggable>
   );
 };
 
