@@ -17,6 +17,8 @@
     "test": "VITE_CJS_IGNORE_WARNING=true vitest"
   },
   "dependencies": {
+    "@sedationh/react-tree": "^0.0.4",
+    "antd": "^5.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vitest": "^1.5.0"
