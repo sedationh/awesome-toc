@@ -12,6 +12,7 @@ export default defineContentScript({
       position: "inline",
       onMount: (container) => {
         const app = document.createElement("div");
+        app.id = "awesome-toc-root";
         container.append(app);
 
         const root = ReactDOM.createRoot(app);

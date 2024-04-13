@@ -1,62 +1,101 @@
-import 'antd/dist/antd.css';
-import { Tree } from "antd";
-import type { TreeDataNode, TreeProps } from "antd";
+import "antd/dist/antd.css";
+import React, { Key, useEffect, useState } from "react";
+import { Tree, TreeDataNode, TreeProps } from "antd";
+import { debounce } from "lodash-es";
+import {
+  buildDom2KeyMap,
+  buildKey2DOM,
+  buildNestedTokenDOMs,
+  buildTreeData,
+  extractArticle,
+  extractTokenDOMs,
+  getKeyArray,
+  iterateNestedTokenDOMs,
+} from "./preprocess";
 
-const treeData: TreeDataNode[] = [
-  {
-    title: "parent 1",
-    key: "0-0",
-    children: [
-      {
-        title: "parent 1-0",
-        key: "0-0-0",
-        disabled: true,
-        children: [
-          {
-            title: "leaf",
-            key: "0-0-0-0",
-            disableCheckbox: true,
-          },
-          {
-            title: "leaf",
-            key: "0-0-0-1",
-          },
-        ],
-      },
-      {
-        title: "parent 1-1",
-        key: "0-0-1",
-        children: [
-          {
-            title: <span style={{ color: "#1677ff" }}>sss</span>,
-            key: "0-0-1-0",
-          },
-        ],
-      },
-    ],
-  },
-];
+const App = () => {
+  const [treeData, setTreeData] = useState<TreeDataNode[]>([]);
+  const [key2dom, setKey2DOM] = useState<Map<string, HTMLElement>>(new Map());
+  const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
+  const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-const App: React.FC = () => {
-  const onSelect: TreeProps["onSelect"] = (selectedKeys, info) => {
-    console.log("selected", selectedKeys, info);
+  const debouncedSetSelectedKeys = debounce(setSelectedKeys, 100);
+  const debouncedSetExpandedKeys = debounce(setExpandedKeys, 100);
+
+  useEffect(() => {
+    const article = extractArticle();
+    const tokenDOMs = extractTokenDOMs(article);
+    const nestedTokenDOMs = buildNestedTokenDOMs(tokenDOMs);
+    const treeData = buildTreeData(nestedTokenDOMs);
+    const key2dom = buildKey2DOM(nestedTokenDOMs);
+    const dom2keyMap = buildDom2KeyMap(nestedTokenDOMs);
+
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const key = dom2keyMap.get(entry.target as HTMLElement);
+          if (!key) return;
+
+          debouncedSetSelectedKeys(getKeyArray(key));
+          debouncedSetExpandedKeys(getKeyArray(key));
+        }),
+      {
+        rootMargin: "0px 0px -85% 0px",
+      }
+    );
+
+    iterateNestedTokenDOMs(nestedTokenDOMs, (nestedTokenDOM) => {
+      observer.observe(nestedTokenDOM.dom);
+    });
+
+    setTreeData(treeData);
+    setKey2DOM(key2dom);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const backgroundColor = isCollapsed ? "#FF4F37" : "#73e860";
+
+  const onSelect: TreeProps["onSelect"] = (keys: Key[], { node }) => {
+    const dom = key2dom.get(node.key as string);
+
+    dom?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    setSelectedKeys(keys);
   };
 
-  const onCheck: TreeProps["onCheck"] = (checkedKeys, info) => {
-    console.log("onCheck", checkedKeys, info);
+  const onExpand: TreeProps["onExpand"] = (keys, { node }) => {
+    setExpandedKeys(keys);
   };
 
   return (
-    <div className="app">
-      <Tree
-        checkable
-        defaultExpandedKeys={["0-0-0", "0-0-1"]}
-        defaultSelectedKeys={["0-0-0", "0-0-1"]}
-        defaultCheckedKeys={["0-0-0", "0-0-1"]}
-        onSelect={onSelect}
-        onCheck={onCheck}
-        treeData={treeData}
+    <div className="tree-wrapper">
+      <div
+        className="btn"
+        style={{
+          backgroundColor,
+        }}
+        onClick={() => {
+          setIsCollapsed((v) => !v);
+        }}
       />
+      {!!treeData.length && !isCollapsed && (
+        <Tree
+          multiple
+          expandedKeys={expandedKeys}
+          selectedKeys={selectedKeys}
+          onSelect={onSelect}
+          onExpand={onExpand}
+          treeData={treeData}
+        />
+      )}
     </div>
   );
 };
