@@ -10,17 +10,23 @@ export default defineContentScript({
     const ui = await createShadowRootUi(ctx, {
       name: "toc-ui",
       position: "inline",
-      onMount: (container) => {
+      onMount: async (container) => {
         const app = document.createElement("div");
         app.id = "awesome-toc-root";
         container.append(app);
+
+        const isAutoLoadValue = await isAutoLoad.getValue();
+
+        if (!isAutoLoadValue) {
+          return;
+        }
 
         const root = ReactDOM.createRoot(app);
         root.render(<App />);
         return root;
       },
       onRemove: (root) => {
-        root?.unmount();
+        root?.then((r) => r?.unmount());
       },
     });
 
