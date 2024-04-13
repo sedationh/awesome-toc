@@ -1,17 +1,17 @@
-import './style.css';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import "./style.css";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
 
 export default defineContentScript({
-  matches: ['<all_urls>'],
-  cssInjectionMode: 'ui',
+  matches: ["<all_urls>"],
+  cssInjectionMode: "ui",
 
   async main(ctx) {
     const ui = await createShadowRootUi(ctx, {
-      name: 'toc-ui',
-      position: 'inline',
+      name: "toc-ui",
+      position: "inline",
       onMount: (container) => {
-        const app = document.createElement('div');
+        const app = document.createElement("div");
         container.append(app);
 
         const root = ReactDOM.createRoot(app);

@@ -1,7 +1,6 @@
-import React from "react";
-import Tree from "@sedationh/react-tree";
-import "@sedationh/react-tree/assets/style.css";
-import { Button, type TreeDataNode, type TreeProps } from "antd";
+import 'antd/dist/antd.css';
+import { Tree } from "antd";
+import type { TreeDataNode, TreeProps } from "antd";
 
 const treeData: TreeDataNode[] = [
   {
@@ -50,11 +49,14 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Tree
-        data={treeData as any}
+        checkable
         defaultExpandedKeys={["0-0-0", "0-0-1"]}
         defaultSelectedKeys={["0-0-0", "0-0-1"]}
+        defaultCheckedKeys={["0-0-0", "0-0-1"]}
+        onSelect={onSelect}
+        onCheck={onCheck}
+        treeData={treeData}
       />
-      <Button>1</Button>
     </div>
   );
 };
