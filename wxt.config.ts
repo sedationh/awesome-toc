@@ -8,5 +8,14 @@ export default defineConfig({
   }),
   manifest: {
     permissions: ["storage"],
+    commands: {
+      "toggle-toc": {
+        suggested_key: {
+          default: "Alt+T",
+          mac: "Alt+T",
+        },
+        description: "Show TOC",
+      },
+    },
   },
 });
