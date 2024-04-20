@@ -1,5 +1,9 @@
 import { defineRunnerConfig } from "wxt";
 
 export default defineRunnerConfig({
-  startUrls: ["https://wxt.dev/guide/manifest.html"],
+  startUrls: [
+    "https://chat.openai.com/",
+    "https://wxt.dev/guide/manifest.html",
+    "https://support.apple.com/zh-cn/102861",
+  ],
 });

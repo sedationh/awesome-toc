@@ -59,7 +59,7 @@ export default defineContentScript({
   async main(ctx) {
     const ui = await createShadowRootUi(ctx, {
       name: "toc-ui",
-      position: "inline",
+      position: "overlay",
       onMount: async (container) => {
         toc.setContainer(container);
         const isAutoLoadValue = await isAutoLoad.getValue();
