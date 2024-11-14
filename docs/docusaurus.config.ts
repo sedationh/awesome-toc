@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Awesome TOC',
+  tagline: 'A browser extension that generates an interactive, draggable table of contents for any webpage',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -65,12 +65,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/awesome-toc-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Awesome TOC',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Awesome TOC Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -78,12 +77,17 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/sedationh/awesome-toc',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          href: 'https://chrome.google.com/webstore/detail/awesome-toc/pdmggidnacmkccaleplpejifphhfbfag',
+          label: 'Chrome Store',
           position: 'right',
         },
       ],
@@ -95,7 +99,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Getting Started',
               to: '/docs/intro',
             },
           ],
@@ -104,16 +108,12 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'GitHub Issues',
+              href: 'https://github.com/sedationh/awesome-toc/issues',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Chrome Store',
+              href: 'https://chrome.google.com/webstore/detail/awesome-toc/pdmggidnacmkccaleplpejifphhfbfag',
             },
           ],
         },
@@ -126,12 +126,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/sedationh/awesome-toc',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Awesome TOC. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
