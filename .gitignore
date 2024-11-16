@@ -24,3 +24,4 @@ stats-*.json
 *.njsproj
 *.sln
 *.sw?
+.env
