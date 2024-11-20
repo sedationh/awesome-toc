@@ -18,8 +18,8 @@ importers:
         specifier: ^3.0.0
         version: 3.1.0(@types/react@18.3.12)(react@18.3.1)
       '@petercatai/assistant':
-        specifier: ^1.0.7
-        version: 1.0.7(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(postcss@8.4.49)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.0.12
+        version: 1.0.12(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(postcss@8.4.49)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
@@ -1165,8 +1165,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@petercatai/assistant@1.0.7':
-    resolution: {integrity: sha512-FE/i8ZxakbD9pl2K12KBE1G2PeUhj7HnxB0S8r8GfWwDzq7GZgjwOvnIP6/ooW17e6xhm5J/AWPAldBVjk6RMQ==}
+  '@petercatai/assistant@1.0.12':
+    resolution: {integrity: sha512-lbvFtTt5Z7guQ7Z12Enc7oHcdvR5e7/b37GCK78Gp3wX72dwbiAxeYvir1rTovgSnY4juFprjU06WLxQBn6Rug==}
     peerDependencies:
       react: '>=16.9.0 <19.0.0'
       react-dom: '>=16.9.0 <19.0.0'
@@ -8068,7 +8068,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@petercatai/assistant@1.0.7(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(postcss@8.4.49)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@petercatai/assistant@1.0.12(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(postcss@8.4.49)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/pro-chat': 1.15.3(@types/react@18.3.12)(antd-style@3.7.1(@types/react@18.3.12)(antd@5.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(antd@5.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
