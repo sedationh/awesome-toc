@@ -15,6 +15,7 @@ import {
 import { ExpandOutlined, CompressOutlined } from "@ant-design/icons";
 import { isFixedExpandedAllStorage } from "@/utils/storage";
 import { useCurrentUrl } from "./hooks";
+import logger from "../utils/logger";
 
 const App = () => {
   const [treeData, setTreeData] = useState<TreeDataNode[]>([]);
@@ -42,6 +43,9 @@ const App = () => {
   useEffect(() => {
     const article = extractArticle();
     const tokenDOMs = extractTokenDOMs(article);
+    logger("tokenDOMs", {
+      tokenDOMs: tokenDOMs.map((v) => v.tagName),
+    });
     const nestedTokenDOMs = buildNestedTokenDOMs(tokenDOMs);
     const treeData = buildTreeData(nestedTokenDOMs);
     const key2dom = buildKey2DOM(nestedTokenDOMs);

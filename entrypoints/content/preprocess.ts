@@ -1,5 +1,6 @@
 import { TreeDataNode } from "antd";
 import { cloneDeep } from "lodash-es";
+import logger from "@/entrypoints/utils/logger";
 
 export const extractArticle = () => {
   // TODO: 利用权重分析文章的 article element
@@ -113,21 +114,30 @@ export function getKeyArray(key: string) {
   return keyArray;
 }
 
-class NestedTokenDOM {
+export class NestedTokenDOM {
   dom: HTMLElement;
-  children: NestedTokenDOM[] = [];
+  children: NestedTokenDOM[];
   // 依赖于层级关系生成
   key = "";
 
-  constructor(tokenDOM: HTMLElement) {
+  constructor(tokenDOM: HTMLElement, children: NestedTokenDOM[] = []) {
     this.dom = tokenDOM;
+    this.children = children;
+  }
+
+  // 添加 toJSON 方法来控制序列化行为
+  toJSON() {
+    return {
+      children: this.children,
+      key: this.key,
+    };
   }
 }
 
-function getLastItem(array: any[]) {
+function getLastItem<T>(array: T[]) {
   return array[array.length - 1];
 }
-function getLastItemIndex(array: any[]) {
+function getLastItemIndex<T>(array: T[]) {
   return array.length - 1;
 }
 
@@ -137,9 +147,8 @@ function getHeadingLevel(nestedTokenDOM: NestedTokenDOM) {
 
 /**
  * 重点实现
- * TODO: 需要补充测试
  */
-function nestTokenDOMs(
+export function nestTokenDOMs(
   nestedTokenDOMs: NestedTokenDOM[],
   currentNestedTokenDOM: NestedTokenDOM
 ) {
@@ -151,15 +160,35 @@ function nestTokenDOMs(
   let cnt = currentLevel - lastItemLevel;
   const keyArray = [];
 
+  logger("currentLevel", {
+    currentLevel,
+    lastItemLevel,
+    cnt,
+    dom: currentNestedTokenDOM.dom.tagName,
+  });
+
   // 最终定位到要进行添加的children
   while (cnt > 0) {
     lastItem = getLastItem(children);
     lastItemIndex = getLastItemIndex(children);
-    if (!lastItem) return;
+    logger("lastItem", {
+      lastItem,
+      lastItemDom: lastItem?.dom.tagName,
+      lastItemIndex,
+      children,
+    });
+    if (!lastItem || getHeadingLevel(lastItem) === currentLevel) {
+      break;
+    }
     keyArray.push(lastItemIndex);
     children = lastItem.children;
     cnt--;
   }
+
+  logger("children", {
+    children,
+    currentNestedTokenDOM,
+  });
 
   children.push(currentNestedTokenDOM);
   lastItemIndex = getLastItemIndex(children);
