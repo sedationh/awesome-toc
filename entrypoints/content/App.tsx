@@ -83,7 +83,10 @@ const App = () => {
         dragRef.current = false;
       }}
       onDrag={() => {
-        dragRef.current = true;
+        // 防止轻微的点击造成了拖拽但是影响了展开
+        setTimeout(() => {
+          dragRef.current = true;
+        }, 100);
       }}
       handle="#btn"
     >
@@ -96,6 +99,7 @@ const App = () => {
               backgroundColor,
             }}
             onClick={() => {
+              console.log("click", dragRef.current, isCollapsed);
               if (dragRef.current) return;
               setIsCollapsed((v) => !v);
             }}
