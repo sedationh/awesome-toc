@@ -91,7 +91,7 @@ const App = () => {
       handle="#btn"
     >
       <div className="awesome-toc-root">
-        <div className="tree-wrapper">
+        <div className="btn-sticky">
           <div
             className="btn"
             id="btn"
@@ -104,6 +104,8 @@ const App = () => {
               setIsCollapsed((v) => !v);
             }}
           />
+        </div>
+        <div className="tree-wrapper">
           {!!treeData.length && !isCollapsed && (
             <Tree
               multiple

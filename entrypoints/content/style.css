@@ -19,7 +19,7 @@
   min-height: 30px;
 }
 
-.tree-wrapper .btn {
+.awesome-toc-root .btn {
   width: 20px;
   height: 20px;
   position: absolute;
@@ -27,6 +27,11 @@
   top: 5px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.btn-sticky {
+  position: sticky;
+  top: 0px;
 }
 
 .tree-wrapper .ant-tree {
