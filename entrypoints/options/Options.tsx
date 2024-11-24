@@ -27,7 +27,14 @@ const Options = () => {
       <Paragraph>
         <blockquote>
           Changes will
-          <Text mark>automatically</Text>
+          <Text
+            style={{
+              margin: "0 4px",
+            }}
+            mark
+          >
+            automatically
+          </Text>
           take effect
         </blockquote>
       </Paragraph>
