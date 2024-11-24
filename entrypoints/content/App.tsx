@@ -1,6 +1,5 @@
-import "antd/dist/antd.css";
-import React, { Key, useEffect, useState } from "react";
-import { Tree, TreeDataNode, TreeProps } from "antd";
+import React, { Key, useEffect, useMemo, useState } from "react";
+import { Button, Tree, TreeDataNode, TreeProps } from "antd";
 import { debounce } from "lodash-es";
 import Draggable from "react-draggable";
 import {
@@ -13,6 +12,8 @@ import {
   getKeyArray,
   iterateNestedTokenDOMs,
 } from "./preprocess";
+import { ExpandOutlined, CompressOutlined } from "@ant-design/icons";
+import { isFixedExpandedAllStorage } from "@/utils/storage";
 
 const App = () => {
   const [treeData, setTreeData] = useState<TreeDataNode[]>([]);
@@ -20,10 +21,21 @@ const App = () => {
   const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isFixedExpandedAll, setIsFixedExpandedAll] = useState(false);
   const dragRef = React.useRef<boolean>(false);
 
   const debouncedSetSelectedKeys = debounce(setSelectedKeys, 100);
   const debouncedSetExpandedKeys = debounce(setExpandedKeys, 100);
+
+  const allKeys = useMemo(() => {
+    return Array.from(key2dom.keys());
+  }, [key2dom]);
+
+  useEffect(() => {
+    isFixedExpandedAllStorage.getValue().then((v) => {
+      setIsFixedExpandedAll(v);
+    });
+  }, []);
 
   useEffect(() => {
     const article = extractArticle();
@@ -92,6 +104,17 @@ const App = () => {
     >
       <div className="awesome-toc-root">
         <div className="btn-sticky">
+          <Button
+            size="small"
+            className="btn-fixed-expand-all"
+            type="primary"
+            icon={
+              isFixedExpandedAll ? <ExpandOutlined /> : <CompressOutlined />
+            }
+            onClick={() => {
+              setIsFixedExpandedAll((v) => !v);
+            }}
+          />
           <div
             className="btn"
             id="btn"
@@ -109,7 +132,7 @@ const App = () => {
           {!!treeData.length && !isCollapsed && (
             <Tree
               multiple
-              expandedKeys={expandedKeys}
+              expandedKeys={isFixedExpandedAll ? allKeys : expandedKeys}
               selectedKeys={selectedKeys}
               onSelect={onSelect}
               onExpand={onExpand}

@@ -1,3 +1,4 @@
+import "antd/dist/antd.css";
 import "./style.css";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
@@ -62,7 +63,8 @@ export default defineContentScript({
       position: "overlay",
       onMount: async (container) => {
         toc.setContainer(container);
-        const isAutoLoadValue = await isAutoLoad.getValue();
+        const isAutoLoadValue = await isAutoLoadStorage.getValue();
+        console.log("isAutoLoadValue", isAutoLoadValue);
 
         if (!isAutoLoadValue) {
           return;

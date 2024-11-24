@@ -34,6 +34,15 @@
   top: 0px;
 }
 
+.awesome-toc-root .btn-fixed-expand-all {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  /* 5 + 20 + 5 */
+  right: 30px;
+  top: 5px;
+}
+
 .tree-wrapper .ant-tree {
   padding: 25px 25px 14px 0px;
 }
