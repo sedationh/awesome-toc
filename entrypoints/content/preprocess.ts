@@ -16,7 +16,9 @@ export const extractTokenDOMs = (
   articleDOM: HTMLElement | null
 ): HTMLElement[] => {
   if (!articleDOM) return [];
-  return Array.from(articleDOM.querySelectorAll("h1,h2,h3,h4,h5"));
+  return Array.from(articleDOM.querySelectorAll("h1,h2,h3,h4,h5")).filter(
+    (v) => !!v.textContent?.trim()
+  ) as HTMLElement[];
 };
 
 export const buildNestedTokenDOMs = (

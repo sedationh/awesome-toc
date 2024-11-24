@@ -44,7 +44,8 @@ const App = () => {
     const article = extractArticle();
     const tokenDOMs = extractTokenDOMs(article);
     logger("tokenDOMs", {
-      tokenDOMs: tokenDOMs.map((v) => v.tagName),
+      tokenDOMsWithTagName: tokenDOMs.map((v) => v.tagName),
+      tokenDOMs,
     });
     const nestedTokenDOMs = buildNestedTokenDOMs(tokenDOMs);
     const treeData = buildTreeData(nestedTokenDOMs);
@@ -113,7 +114,7 @@ const App = () => {
           <Button
             size="small"
             className="btn-fixed-expand-all"
-            type="primary"
+            type={isFixedExpandedAll ? "link" : "text"}
             icon={
               isFixedExpandedAll ? <ExpandOutlined /> : <CompressOutlined />
             }

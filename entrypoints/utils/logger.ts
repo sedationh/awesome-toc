@@ -2,7 +2,7 @@ const isNode = typeof window === "undefined" || typeof process !== "undefined";
 const isDev = process.env.NODE_ENV === "development";
 
 const logger = (...args: any[]) => {
-  if (isDev) {
+  if (!isDev) {
     return;
   }
 
