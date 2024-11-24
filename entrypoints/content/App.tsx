@@ -14,6 +14,7 @@ import {
 } from "./preprocess";
 import { ExpandOutlined, CompressOutlined } from "@ant-design/icons";
 import { isFixedExpandedAllStorage } from "@/utils/storage";
+import { useCurrentUrl } from "./hooks";
 
 const App = () => {
   const [treeData, setTreeData] = useState<TreeDataNode[]>([]);
@@ -23,6 +24,7 @@ const App = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isFixedExpandedAll, setIsFixedExpandedAll] = useState(false);
   const dragRef = React.useRef<boolean>(false);
+  const currentUrl = useCurrentUrl();
 
   const debouncedSetSelectedKeys = debounce(setSelectedKeys, 100);
   const debouncedSetExpandedKeys = debounce(setExpandedKeys, 100);
@@ -70,7 +72,7 @@ const App = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [currentUrl]);
 
   const backgroundColor = isCollapsed ? "#FF4F37" : "#73e860";
 

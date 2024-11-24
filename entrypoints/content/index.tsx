@@ -64,7 +64,6 @@ export default defineContentScript({
       onMount: async (container) => {
         toc.setContainer(container);
         const isAutoLoadValue = await isAutoLoadStorage.getValue();
-        console.log("isAutoLoadValue", isAutoLoadValue);
 
         if (!isAutoLoadValue) {
           return;
