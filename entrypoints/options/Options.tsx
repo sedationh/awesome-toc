@@ -23,9 +23,9 @@ const Options = () => {
       <Title>Awesome TOC Options</Title>
       <Paragraph>
         <blockquote>
-          修改后会
-          <Text mark>自动</Text>
-          生效
+          Changes will
+          <Text mark>automatically</Text>
+          take effect
         </blockquote>
       </Paragraph>
       <Form
@@ -35,7 +35,7 @@ const Options = () => {
         }}
       >
         <Form.Item<FieldType>
-          label="是否自动加载插件"
+          label="Auto-load Plugin"
           name="isAutoLoad"
           valuePropName="checked"
         >
