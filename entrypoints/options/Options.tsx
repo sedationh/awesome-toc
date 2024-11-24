@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import { Card, Form, Switch } from "antd";
 import { Typography } from "antd";
-import { isAutoLoad } from "/utils/storage";
+import { isAutoLoad } from "@/utils/storage";
 import { useAsyncEffect } from "ahooks";
 
 const { Title, Text, Paragraph } = Typography;
