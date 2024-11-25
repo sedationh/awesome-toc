@@ -14,7 +14,8 @@
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
     "postinstall": "wxt prepare",
-    "test": "VITE_CJS_IGNORE_WARNING=true vitest"
+    "test": "VITE_CJS_IGNORE_WARNING=true vitest",
+    "version": "node script/version.js"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
