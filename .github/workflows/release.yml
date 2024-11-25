@@ -32,7 +32,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           tag="${GITHUB_REF#refs/tags/}"
-
+          version="${tag#v}"
+          
           gh release create "$tag" \
                   --title="$tag" \
-                  .output/awesome-toc-${tag}-chrome.zip
+                  .output/awesome-toc-${version}-chrome.zip
