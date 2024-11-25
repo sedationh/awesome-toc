@@ -1,5 +1,5 @@
+import { readFileSync, writeFileSync } from "fs";
 import { execSync } from "child_process";
-import { readFileSync } from "fs";
 
 // 获取版本类型参数 (patch|minor|major)
 const versionType = process.argv[2] || "patch";
@@ -11,19 +11,35 @@ if (!validVersionTypes.includes(versionType)) {
 }
 
 try {
-	// 运行 npm version 命令，这会：
-	// 1. 更新 package.json 中的版本
-	// 2. 通过 version script 更新 manifest.json 和 versions.json
-	// 3. 创建 git commit 和 tag
-	execSync(`npm version ${versionType}`, { stdio: "inherit" });
-
-	// 获取新版本号
+	// 读取当前版本
 	const packageJson = JSON.parse(readFileSync("package.json", "utf8"));
-	const newVersion = packageJson.version;
+	const currentVersion = packageJson.version;
+	const [major, minor, patch] = currentVersion.split(".").map(Number);
 
-	// 推送更改和标签
+	// 计算新版本号
+	let newVersion;
+	switch (versionType) {
+		case "major":
+			newVersion = `${major + 1}.0.0`;
+			break;
+		case "minor":
+			newVersion = `${major}.${minor + 1}.0`;
+			break;
+		case "patch":
+			newVersion = `${major}.${minor}.${patch + 1}`;
+			break;
+	}
+
+	// 更新 package.json
+	packageJson.version = newVersion;
+	writeFileSync("package.json", JSON.stringify(packageJson, null, 2) + "\n");
+
+	// Git 操作
+	execSync('git add package.json', { stdio: "inherit" });
+	execSync(`git commit -m "chore: bump version to ${newVersion}"`, { stdio: "inherit" });
+	execSync(`git tag -a v${newVersion} -m "Version ${newVersion}"`, { stdio: "inherit" });
 	execSync("git push", { stdio: "inherit" });
-	execSync(`git push origin ${newVersion}`, { stdio: "inherit" });
+	execSync(`git push origin v${newVersion}`, { stdio: "inherit" });
 
 	console.log(`\nSuccessfully published version ${newVersion}`);
 } catch (error) {
