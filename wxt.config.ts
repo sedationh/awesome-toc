@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [react()],
   }),
   manifest: {
-    permissions: ["storage"],
+    permissions: ["storage", "contextMenus"],
     commands: {
       "toggle-toc": {
         suggested_key: {
