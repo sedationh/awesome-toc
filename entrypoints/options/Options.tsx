@@ -40,7 +40,6 @@ const Options = () => {
       </Paragraph>
 
       <Paragraph>
-        {/* 使用默认快捷键 Alt+T */}
         <Text mark>Alt+T</Text> to toggle TOC
       </Paragraph>
       <Form
