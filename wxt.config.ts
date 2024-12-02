@@ -8,6 +8,7 @@ export default defineConfig({
   }),
   manifest: {
     permissions: ["storage", "contextMenus"],
+    homepage_url: "https://awesome-toc.vercel.app/",
     commands: {
       "toggle-toc": {
         suggested_key: {
