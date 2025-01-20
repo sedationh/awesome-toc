@@ -2,6 +2,10 @@
 
 [Youtube Introduction](https://www.youtube.com/watch?v=5jzSpjnYU88)
 
+
+<img width="1306" alt="image" src="https://github.com/user-attachments/assets/8701364d-59e4-4d34-af54-7efa489bf761" />
+
+
 A browser extension that generates an interactive, draggable table of contents for any webpage.
 
 
